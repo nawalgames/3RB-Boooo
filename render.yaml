@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: 3rb-discord-bot
+    runtime: node
+    rootDir: services/3rb-discord-bot
+    buildCommand: apt-get update && apt-get install -y --no-install-recommends build-essential libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev librsvg2-dev libpixman-1-dev pkg-config && pnpm install --frozen-lockfile
+    startCommand: pnpm start
+    healthCheckPath: /
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: DISCORD_CLIENT_ID
+        sync: false
+      - key: OWNER_ID
+        sync: false
+      - key: LEVEL_UP_CHANNEL_ID
+        sync: false
+      - key: GENERAL_CHANNEL_ID
+        sync: false
+      - key: FIREBASE_DATABASE_URL
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.1-8b-instant
+      - key: OPENROUTER_MODEL
+        value: openrouter/free
