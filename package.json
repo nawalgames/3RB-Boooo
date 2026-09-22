@@ -1,19 +1,26 @@
 {
-  "name": "workspace",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
-    "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
-  },
+  "name": "@workspace/3rb-discord-bot",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "check": "find src -type f -name '*.js' -print0 | xargs -0 -n1 node --check",
+    "format": "prettier --write src"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
-    "@replit/connectors-sdk": "^0.4.1"
+    "@google/genai": "^1.29.0",
+    "@napi-rs/canvas": "^0.1.64",
+    "discord.js": "^14.25.1",
+    "dotenv": "^16.6.1",
+    "express": "^5.2.1",
+    "firebase-admin": "^13.6.0"
   },
   "devDependencies": {
-    "prettier": "^3.9.6",
-    "typescript": "~5.9.3"
+    "prettier": "^3.9.6"
   }
 }
